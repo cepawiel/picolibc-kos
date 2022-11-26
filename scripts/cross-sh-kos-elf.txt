@@ -1,0 +1,19 @@
+[binaries]
+# Meson 0.53.2 doesn't use any cflags when doing basic compiler tests,
+# so we have to add -nostdlib to the compiler configuration itself or
+# early compiler tests will fail. This can be removed when picolibc
+# requires at least version 0.54.2 of meson.
+c = ['sh-kos-elf-gcc', '-nostdlib']
+ar = 'sh-kos-elf-ar'
+as = 'sh-kos-elf-as'
+nm = 'sh-kos-elf-nm'
+strip = 'sh-kos-elf-strip'
+
+[host_machine]
+system = 'kallistios'
+cpu_family = 'sh'
+cpu = 'sh4'
+endian = 'little'
+
+[properties]
+skip_sanity_check = true

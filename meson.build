@@ -34,7 +34,8 @@
 #
 project('picolibc', 'c',
 	default_options: [
-	  'buildtype=minsize',
+	  # 'buildtype=minsize',
+    'buildtype=debug',
 	  'debug=true',
 	  'c_std=c18',
 	  'b_staticpic=false',
@@ -200,6 +201,83 @@ if fortify_source == 'none'
 else
   c_args += '-D_FORTIFY_SOURCE=' + fortify_source
 endif
+
+
+
+c_args += '-O0'
+# c_args += '-m4-single-only'
+
+c_args += '-fauto-inc-dec'
+c_args += '-fbranch-count-reg'
+c_args += '-fcombine-stack-adjustments'
+c_args += '-fcompare-elim'
+c_args += '-fcprop-registers'
+c_args += '-fdce'
+c_args += '-fdefer-pop'
+c_args += '-fdelayed-branch'
+c_args += '-fdse'
+c_args += '-fforward-propagate'
+c_args += '-fguess-branch-probability'
+c_args += '-fif-conversion'
+c_args += '-fif-conversion2'
+c_args += '-finline-functions-called-once'
+c_args += '-fipa-modref'
+c_args += '-fipa-profile'
+c_args += '-fipa-pure-const'
+c_args += '-fipa-reference'
+c_args += '-fipa-reference-addressable'
+c_args += '-fmerge-constants'
+c_args += '-fmove-loop-invariants'
+c_args += '-fmove-loop-stores'
+c_args += '-fomit-frame-pointer'
+c_args += '-freorder-blocks'
+c_args += '-fshrink-wrap'
+c_args += '-fshrink-wrap-separate'
+c_args += '-fsplit-wide-types'
+c_args += '-fssa-backprop'
+c_args += '-fssa-phiopt'
+c_args += '-ftree-bit-ccp'
+c_args += '-ftree-ccp'
+c_args += '-ftree-ch'
+c_args += '-ftree-coalesce-vars'
+c_args += '-ftree-copy-prop'
+c_args += '-ftree-dce'
+c_args += '-ftree-dominator-opts'
+c_args += '-ftree-dse'
+c_args += '-ftree-forwprop'
+c_args += '-ftree-fre'
+c_args += '-ftree-phiprop'
+c_args += '-ftree-pta'
+c_args += '-ftree-scev-cprop'
+c_args += '-ftree-sink'
+c_args += '-ftree-slsr'
+c_args += '-ftree-sra'
+c_args += '-ftree-ter'
+c_args += '-funit-at-a-time'
+
+c_args += '-fopt-info-inline-optimized-missed'
+
+c_args += '-fno-inline'
+c_args += '-fno-thread-jumps'
+c_args += '-fno-toplevel-reorder'
+c_args += '-fno-tree-builtin-call-dce'
+
+c_args += '-funreachable-traps'
+c_args += '-fno-var-tracking'
+c_args += '-fno-var-tracking-assignments'
+c_args += '-fno-var-tracking-uninit'
+c_args += '-gno-statement-frontiers'
+c_args += '-fbuiltin'
+
+c_args += '-finline-functions'
+
+# gcc steps https://gcc.gnu.org/wiki/FAQ#misoptimization
+# c_args += '-fno-strict-aliasing'
+# c_args += '-fwrapv'
+# c_args += '-fno-aggressive-loop-optimizations'
+
+
+
 
 if cc.symbols_have_underscore_prefix()
   global_prefix = '_'
